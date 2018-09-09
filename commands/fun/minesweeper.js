@@ -5,11 +5,11 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f'];
 exports.run = async (client, msg, args) => {
 	if(sessions.has(msg.channel.id)) return msg.reply('Only 1 game may be occuring per channel');
 	try{
-		const board = [];
-		let showboard = new Array(36).fill('?');
+		let board = new Array(36).fill('⬛')
+		let showboard = new Array(36).fill('⬜');
 		const bombSize = Math.floor(Math.random()*10);
-		for(let i = 0; i < 36; i++){
-			board.push(i < bombSize ? '💣' : '⬛');
+		for(let i = 0; i < bombSize; i++){
+			board[i] ='💣';
 		}
 		board = client.util.shuffle(board);
 		board = client.util.chunk(board, 6);
